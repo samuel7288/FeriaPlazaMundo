@@ -1,0 +1,5 @@
+vendor/
+.vscode/
+composer.lock
+Ticket/
+librerias/dompdf/lib/php-css-parser/composer.lock
