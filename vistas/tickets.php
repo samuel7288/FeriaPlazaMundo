@@ -149,7 +149,7 @@ if(isset($_SESSION['usuario'])){
 				$.ajax({
 					type:"POST",
 					data:datos,
-					url:"../procesos/tickets/actualizaTicket.php",
+					url:"../procesos/tickets/actualizaTickets.php",
 					success:function(r){
 						if(r==1){
 							$('#tablaTicketsLoad').load("tickets/tablaTickets.php");

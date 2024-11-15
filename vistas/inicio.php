@@ -89,11 +89,11 @@
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone pulse"></i>
-                    <p>+123 456 7890</p>
+                    <p>+503 23452345</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt pulse"></i>
-                    <p>Av. Principal, Ciudad, País</p>
+                    <p>San Salvador, El Salvador</p>
                 </div>
             </div>
         </div>

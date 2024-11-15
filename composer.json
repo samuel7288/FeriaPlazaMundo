@@ -1,9 +1,9 @@
 {
   "name": "energysun/ecommerce",
   "authors": [ 
-    { "name": "Ricardo Pineda" }
+    { "name": "Samuel Alas" }
   ],
-  "description": "Proyecto tipo ecommerce sobre Paneles Solares",
+  "description": "Proyecto de venta de tickes de feria plaza mundo",
   "type": "project",
 
   "autoload": {

@@ -30,25 +30,31 @@ $result_revenue = mysqli_query($conexion, $sql_revenue);
 $row_revenue = mysqli_fetch_assoc($result_revenue);
 $total_dinero = $row_revenue['total_dinero'];
 
+// Get the CSS content
+$css = file_get_contents('../css/styles.css');
+
+// Agregar esta línea antes de crear el HTML para obtener la ruta absoluta
+$rutaLogo = $_SERVER['DOCUMENT_ROOT'] . '/FeriaPlazaMundo/img/logo2.jpg';
+$logoBase64 = 'data:image/jpg;base64,' . base64_encode(file_get_contents($rutaLogo));
+
 // Preparar el contenido HTML
 $html = '
 <html>
 <head>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        h1 { text-align: center; color: #333; }
-        .info { margin: 20px 0; }
-        .categoria { margin: 10px 0; }
-    </style>
+    <style>' . $css . '</style>
 </head>
 <body>
-    <h1>Reporte de Ventas del Día</h1>
-    <div class="info">
-        <p>Fecha: ' . date('d/m/Y') . '</p>
-        <p>Total de Tickets Vendidos: ' . $total_ventas . '</p>
-        <p>Total en Dinero: $' . number_format($total_dinero, 2) . '</p>
-    </div>
-    <h2>Desglose por Categoría:</h2>
+    <div class="report-container">
+        <div class="report-header">
+            <img src="' . $logoBase64 . '" class="report-logo" alt="Logo">
+            <h1 class="report-title">Reporte de Ventas del Día</h1>
+        </div>
+        <div class="report-info">
+            <p><strong>Fecha:</strong> ' . date('d/m/Y') . '</p>
+            <p><strong>Total de Tickets Vendidos:</strong> ' . $total_ventas . '</p>
+            <p><strong>Total en Dinero:</strong> $' . number_format($total_dinero, 2) . '</p>
+        </div>
+        <h2 class="report-title">Desglose por Categoría:</h2>
 ';
 
 // Obtener y mostrar datos por categoría
@@ -62,10 +68,13 @@ foreach($categorias as $categoria) {
     $sql = "SELECT COUNT(*) as total FROM ventas WHERE {$categoria[1]} AND fechaCompra = '$fecha_actual'";
     $result = mysqli_query($conexion, $sql);
     $row = mysqli_fetch_assoc($result);
-    $html .= '<div class="categoria">' . $categoria[0] . ': ' . $row['total'] . '</div>';
+    $html .= '<div class="report-category">
+                <div class="report-category-title">' . $categoria[0] . '</div>
+                Total: ' . $row['total'] . '
+              </div>';
 }
 
-$html .= '</body></html>';
+$html .= '</div></body></html>';
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
