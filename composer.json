@@ -1,0 +1,20 @@
+{
+  "name": "energysun/ecommerce",
+  "authors": [ 
+    { "name": "Ricardo Pineda" }
+  ],
+  "description": "Proyecto tipo ecommerce sobre Paneles Solares",
+  "type": "project",
+
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+
+  "require": {
+    "spipu/html2pdf": "5.2.8",
+    "dompdf/dompdf": "^3.0"
+  }
+
+}
